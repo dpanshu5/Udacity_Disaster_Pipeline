@@ -100,7 +100,20 @@ def evaluate_model(model, X_test, Y_test, category_names):
         evaluation[column].append(recall_score(Y_test[column], df_y_pred[column], average="weighted"))
         evaluation[column].append(f1_score(Y_test[column], df_y_pred[column], average="weighted"))
         
-    print(pd.DataFrame(evaluation))    
+    #print(pd.DataFrame(evaluation))
+    
+    #added the precision, recall and f1-score in the index and taking transpose of the dataframe
+    evaluation_df = pd.DataFrame(evaluation)
+    evaluation_df.index = ["Precision", "Recall", "F1-score"]
+    print(evaluation_df.T)
+
+    # Print the whole classification report
+    y_pred1 = pd.DataFrame(y_pred, columns = Y_test.columns)
+    
+    for column in Y_test.columns:
+        print('Model Performance with Category: {}'.format(column))
+        print(classification_report(Y_test[column], y_pred1[column]))
+
 
 
 def save_model(model, model_filepath):
