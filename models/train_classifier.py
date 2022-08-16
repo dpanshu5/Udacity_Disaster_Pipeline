@@ -106,8 +106,8 @@ def evaluate_model(model, X_test, Y_test, category_names):
     evaluation_df = pd.DataFrame(evaluation)
     evaluation_df.index = ["Precision", "Recall", "F1-score"]
     print(evaluation_df.T)
-
-        # Print the whole classification report
+    
+    # Print the whole classification report
 #     y_pred1 = pd.DataFrame(y_pred, columns = Y_test.columns)
     
 #     for column in Y_test.columns:
